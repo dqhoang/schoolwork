@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1360907580 source:/home/duy/lab3/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	<sys/stat.h>
+	<fcntl.h>
+

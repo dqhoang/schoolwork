@@ -1,0 +1,70 @@
+enter main
+enter A
+enter B
+enter C
+
+Hex Address	Contents
+=============================
+fpC=bfb6d20c	134514024
+fpC=bfb6d210	134514391
+fpC=bfb6d214	3216429584
+fpC=bfb6d218	3216429584
+fpC=bfb6d21c	       0
+fpC=bfb6d220	      10
+fpC=bfb6d224	134514280
+fpC=bfb6d228	      10
+fpC=bfb6d22c	3216429640
+fpC=bfb6d230	3216429616
+fpC=bfb6d234	       9
+fpC=bfb6d238	      10
+fpC=bfb6d23c	      11
+fpC=bfb6d240	       0
+fpC=bfb6d244	       0
+Moving to next frame stack
+---------------------------
+fpC=bfb6d248	3216429688
+fpC=bfb6d24c	134513931
+fpC=bfb6d250	       6
+fpC=bfb6d254	       7
+fpC=bfb6d258	       0
+fpC=bfb6d25c	3075848448
+fpC=bfb6d260	3077585080
+fpC=bfb6d264	       6
+fpC=bfb6d268	       7
+fpC=bfb6d26c	       8
+fpC=bfb6d270	       0
+fpC=bfb6d274	       0
+Moving to next frame stack
+---------------------------
+fpC=bfb6d278	3216429736
+fpC=bfb6d27c	134513860
+fpC=bfb6d280	       3
+fpC=bfb6d284	       4
+fpC=bfb6d288	       0
+fpC=bfb6d28c	3075848448
+fpC=bfb6d290	3216429784
+fpC=bfb6d294	       3
+fpC=bfb6d298	       4
+fpC=bfb6d29c	       5
+fpC=bfb6d2a0	       0
+fpC=bfb6d2a4	       0
+Moving to next frame stack
+---------------------------
+fpC=bfb6d2a8	3216429784
+fpC=bfb6d2ac	134513789
+fpC=bfb6d2b0	       1
+fpC=bfb6d2b4	       2
+fpC=bfb6d2b8	3216429948
+fpC=bfb6d2bc	3076059685
+fpC=bfb6d2c0	3077751408
+fpC=bfb6d2c4	       1
+fpC=bfb6d2c8	       2
+fpC=bfb6d2cc	       3
+fpC=bfb6d2d0	134514128
+fpC=bfb6d2d4	       0
+Moving to next frame stack
+---------------------------
+exit C
+exit B
+exit A
+exit main

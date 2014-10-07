@@ -1,0 +1,129 @@
+//---------------------------------------------
+#define NPROC    9
+#define SSIZE 1024
+
+/******* PROC status ********/
+#define FREE     0
+#define READY    1
+#define RUNNING  2
+#define STOPPED  3
+#define SLEEP    4
+#define ZOMBIE   5
+
+typedef struct proc{
+    struct proc *next;
+    int    saved_sp;
+    int    pid;                // add pid for identify the proc
+
+    int    status;             // status = FREE|READY|RUNNING|SLEEP|ZOMBIE    
+    int    ppid;               // parent pid
+    int    priority;
+
+    int    kstack[SSIZE];      // per proc stack area
+}PROC;
+
+PROC proc[NPROC], *running, *freeList, *readyQueue;
+ 
+int initilize()
+{
+  int i;
+  for (i=0;i<NPROC;++i){
+    proc[i]->status = FREE;
+    proc[i]->pid   = i;
+    proc[i]->ppid  = 0;
+    proc[i]->priority = 0;
+    freeList[i] = &proc[i];
+    if (i == NPROC-1)
+    {
+      proc[i]->next = 0;
+    }else{
+      proc[i]->next = &proc[i+1];
+    }
+  }
+  readyQueue = 0;
+  running = 0;
+}
+
+PROC *get_proc()
+{
+  freeList = &proc[1];
+  while( freeList != 0 )
+  {
+    if (freeList->status == FREE)
+      return *freeList;
+    freeList = freeList->next;
+  }
+  return 0;
+}
+
+int put_proc(PROC *p)
+{
+  p->status = FREE;
+}
+
+int enqueue(PROC **queue, PROC *p)
+{
+ /*
+enter p into *queue by priority;
+(The ** is needed because the QUEUE may be empty)
+*/
+ while( *queue != 0)
+ {
+   if ( p->prioirty > (*queue)->priority)
+   {
+     p->next = *queue;
+     *queue = p;
+     return;
+   }
+   *queue = (*queue)->next;
+ }
+ *queue = p;
+ return;
+}
+
+PROC *dequeue(PROC **queue)
+{
+/*
+remove a PROC with the highest priority (the first one in queue)
+return its pointer;
+*/
+  PROC p = *queue;
+  queue = p->next;
+  return p;
+}
+    
+printQueue(PROC *queue)
+{
+//print the queue entries in [pid, priority]->  format;
+  while( *queue != 0)
+  {
+    printf("[ %d , %d ] => ", *queue->pid, *queue->priority);
+    *queue = *queue->next;
+  }
+}
+
+main()
+{
+  int j;
+  initilize();
+  PROC *p = get_proc();
+  p->priority = 5;
+  p->status = READY;
+  enqueue(&readyQueue, p);
+  printQueue(readyQueue);
+  
+  for (j=1; j<10; j++)
+    p->kstack[SSIZE - j] = 0;          // all saved registers = 0
+  p->saved_sp = 0x1234;        // ksp -> kstack top
+}
+/*
+
+4.  ASSUME: PROC *p = &proc[1];
+
+    Write C code to initialize the kstack of a PROC[1] 
+    AS IF it called tswitch() from address  and executed the 
+    SAVE part of tswitch():
+
+    i.e. write values to its kstack[ ] entries
+         Let its ksp point at the kstack top entry;
+*/

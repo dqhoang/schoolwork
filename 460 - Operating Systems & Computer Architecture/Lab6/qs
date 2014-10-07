@@ -1,0 +1,1 @@
+qemu -fda solution -no-fd-bootchk -parallel /dev/pts/1 -boot a

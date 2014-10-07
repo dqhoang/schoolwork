@@ -1,0 +1,13 @@
+#!/bin/bash
+# Do things. Cool things
+
+as86 -o bs.o  bs.s
+bcc -c -ansi  main.c
+ld86 -d bs.o main.o /usr/lib/bcc/libc.a
+
+ls -l a.out
+
+dd if=a.out of=mtximage bs=1024 count=1 conv=notrunc
+
+rm *.o
+echo done
